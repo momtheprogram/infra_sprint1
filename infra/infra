@@ -1,0 +1,80 @@
+server {
+    server_name fortaski.ddns.net www.fortaski.ddns.net;
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000;
+    }
+    
+    location /admin/ {
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location / {
+        root   /var/www/taski;
+        index  index.html index.htm;
+        try_files $uri /index.html;
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/fortaski.ddns.net/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/fortaski.ddns.net/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = fortaski.ddns.net) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+    listen 80;
+    server_name fortaski.ddns.net;
+    return 404; # managed by Certbot
+
+
+}
+server {
+    server_name kittygramm.twilightparadox.com www.kittygramm.twilightparadox.com;
+    location /media/ {
+        client_max_body_size 20M;
+        alias /var/www/kittygram/media/;
+    }
+    location /admin/ {
+        client_max_body_size 20M;
+        proxy_pass http://127.0.0.1:8080;
+    }
+    location /api/ {
+        client_max_body_size 20M;
+        proxy_pass http://127.0.0.1:8080;
+    }
+
+    location / {
+        root  /var/www/kittygram;
+        index  index.html index.htm;
+        try_files $uri /index.html;
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/kittygramm.twilightparadox.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/kittygramm.twilightparadox.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+    if ($host = kittygramm.twilightparadox.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name kittygramm.twilightparadox.com www.kittygramm.twilightparadox.com;
+    return 404; # managed by Certbot
+
+
+}
