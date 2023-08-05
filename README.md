@@ -272,26 +272,33 @@ sudo systemctl reload nginx
 
 Устновите ssl-сертификаты: Ссылка на certbot
 
-файл .env должен содержать такие переменные:
-DEBUG
-SECRET_KEY
+*файл .env должен содержать такие переменные:
+
+-DEBUG,
+-SECRET_KEY
 
 ## Технологии
 
-1.** Frontend**:
+
+1.**Frontend**:
+
 Node.js
 Next.js
 React\
 - Полный список библиотек в файле packeje.json
 
-2.** Backend**:
+
+2.**Backend**:
+
 Django
 DRF
 Gunicorn
 Pillow
 - Полный список библиотек в файле requirements.txt
 
-3.** Сервер**:
+
+3.**Сервер**:
+
 nginx
 
 ### Автор проекта Ляховицкая Наталья https://github.com/momtheprogram/api_yatube
