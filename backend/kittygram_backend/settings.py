@@ -7,11 +7,11 @@ environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY', default=)
 
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = ['158.160.73.243', '127.0.0.1', 'localhost', 'kittygramm.twilightparadox.com']
+ALLOWED_HOSTS = os.environ.get('SERVERNAMES').split(' ') 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
