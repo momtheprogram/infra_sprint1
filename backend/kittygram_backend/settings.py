@@ -11,7 +11,7 @@ SECRET_KEY = env.str('SECRET_KEY', default='А Наташа молодец')
 
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = os.environ.get('HOSTS').split(' ') 
+ALLOWED_HOSTS = env.str('HOSTS').split(' ') 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
